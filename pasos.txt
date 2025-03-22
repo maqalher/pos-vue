@@ -1,0 +1,131 @@
+$ npm create vite@latest
+|
+o  Project name:
+|  pos-vue
+|
+o  Select a framework:
+|  Vue
+|
+o  Select a variant:
+|  Official Vue Starter ↗
+T  Vue.js - The Progressive JavaScript Framework
+|
+o  Select features to include in your project: (↑/↓ to navigate, space to
+select, a to toggle all, enter to confirm)
+|  Router (SPA development), Pinia (state management)
+
+Scaffolding project in C:\Users\thinkpad\Desktop\Vue\vue jp\pos-vue...
+|
+—  Done. Now run:
+
+   npm install
+   npm run dev
+
+Tailwind
+    npm install -D tailwindcss@3 postcss autoprefixer
+    npx tailwindcss init -p
+
+    tailwind.config.js
+        content: [
+            "./index.html",
+            "./src/**/*.{js,ts,jsx,tsx}",
+        ],
+
+
+    main.css
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+Formkit
+    npm i @formkit/vue
+        en main.js
+            import { plugin, defaultConfig } from '@formkit/vue'
+            app.use(plugin, defaultConfig)
+
+    theming en Formkit
+        npm i @formkit/themes 
+        npm i -D @tailwindcss/forms
+
+        crear en raiz formkit.config.js
+            
+            const config = {
+                config: {
+
+                }
+            }
+
+            export default config
+
+        en tailwind.config.js
+            plugins: [
+                require('@tailwindcss/forms')
+            ],
+
+        en main.js
+            import config from '../formkit.config'
+            app.use(plugin, defaultConfig(config))
+
+        en tailwind.config.js
+            content: [
+                "./index.html",
+                "./src/**/*.{vue,js,ts,jsx,tsx}",
+                "./formkit.config.js"
+            ],
+
+Firebase 
+    npm install firebase 
+    npm install vuefire
+
+    crear config/firebase.js
+    import { initializeApp } from 'firebase/app'
+
+    const firebaseConfig = {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    }
+
+    export const firebaseApp = initializeApp(firebaseConfig)
+
+.env.local
+    VITE_FIREBASE_API_KEY = 
+    VITE_FIREBASE_AUTH_DOMAIN = 
+    VITE_FIREBASE_PROJECT_ID = 
+    VITE_FIREBASE_STORAGE_BUCKET = 
+    VITE_FIREBASE_MESSAGING_SENDER_ID = 
+    VITE_FIREBASE_APP_ID = 
+
+main.js
+    // Firebase
+    import { VueFire, VueFireAuth } from 'vuefire'
+    import { firebaseApp } from './config/firebase'
+
+
+    app.use(VueFire, {
+    firebaseApp,
+    modules: [VueFireAuth()],
+    })
+
+uid
+npm i uid
+
+Vue Tailwind Datepicker
+    npm i vue-tailwind-datepicker
+    en tailwind.config
+
+        const colors = require('tailwindcss/colors')
+        theme: {
+            extend: {
+            colors: {
+                "vtd-primary": colors.indigo
+            }
+            },
+        },
+
+
+Deploy Vercel
+{ "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }] }
