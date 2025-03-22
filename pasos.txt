@@ -128,4 +128,5 @@ Vue Tailwind Datepicker
 
 
 Deploy Vercel
+crear archivo vercel.json
 { "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }] }
